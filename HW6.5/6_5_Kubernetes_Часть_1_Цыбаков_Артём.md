@@ -131,8 +131,7 @@ spec:
 
 ```		env:
          - name: ALLOW_EMPTY_PASSWORD
-           value: "yes"
-```
+           value: "yes" ```
 
 Запуск развертывания. Провека. Все работает.
 
