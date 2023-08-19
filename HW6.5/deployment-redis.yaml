@@ -11,8 +11,12 @@ spec:
     metadata:
       labels:
         app: redis
+    spec:
       containers:
       - name: master
         image: bitnami/redis:6.0.13
+        env:
+         - name: ALLOW_EMPTY_PASSWORD
+           value: "yes"
         ports:
         - containerPort: 6379

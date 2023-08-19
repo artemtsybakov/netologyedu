@@ -62,21 +62,6 @@ spec:
         ports:
         - containerPort: 6379
 ```
-
-### Изменение объекта развертывания
-
-Добавил версию к образу redis.
-
-Убрал переменную с логином и паролем.
-
-```spec:
-      containers:
-      - name: master
-        image: bitnami/redis:6.0.13
-        ports:
-        - containerPort: 6379
-```
-
 ### Создание объекта обслуживания 
 
 service-redis.yaml
@@ -95,6 +80,65 @@ spec:
   selector:
     run: redis
 ```
+
+### Изменение объекта развертывания
+
+Добавил версию к образу redis.
+
+Убрал переменную с логином и паролем.
+
+```spec:
+      containers:
+      - name: master
+        image: bitnami/redis:6.0.13
+        ports:
+        - containerPort: 6379
+```
+Запускаем развертывание
+
+```sudo kubectl apply -f HW6.5/deployment-redis.yaml```
+
+Проверка развертывания 
+
+```sudo kubectl get deployment```
+
+Не работает
+
+![Проверка развертывания](/images/6-5-1-2.png)
+
+Проверка пода
+
+```sudo kubectl get pod```
+
+Не запустился и выдает ошибку
+
+![Проверка пода](/images/6-5-1-3.png)
+
+Просмотр журнала пода 
+
+```sudo kubectl logs redis-86bcc69464-q```
+
+В журнале ошибка
+
+![Проверка пода](/images/6-5-1-4.png)
+
+Под не может запустится потому что не указана переменная с паролем. Что бы разрешить доступ без пароля нужно указать переменную ALLOW_EMPTY_PASSWORD=yes.
+
+Удаляем старую развертку и изменяем файл разветки. Добавляем переменную.
+
+```sudo kubectl delete deployment redis```
+
+
+```		env:
+         - name: ALLOW_EMPTY_PASSWORD
+           value: "yes"
+```
+
+Запуск развертывания. Провека. Все работает.
+
+![Результат перезапуска развертки](/images/6-5-1-5.png)
+![Результат перезапуска пода](/images/6-5-1-6.png)
+
 
 ## Задание 3
 
