@@ -15,7 +15,7 @@
 
 Изучаем сценарий на предмет вредоносного кода.
 
-![Текст сценария в Vim](/images/6-5-1-1.png)
+![Текст сценария в Vim](/https://github.com/artemtsybakov/netologyedu/blob/d7d6adc3ca613d5924613ba8131f66e3ab91d551/HW6.5/images/6-5-1-1.png)
 
 Устанвливаем приложение командой
 
@@ -23,7 +23,7 @@
 
 Скриншот результата выполнения команды ``` kubectl get po -n kube-system```
 
-![Результат установки](/images/6-5-1.png)
+![Результат установки](https://github.com/artemtsybakov/netologyedu/blob/d7d6adc3ca613d5924613ba8131f66e3ab91d551/HW6.5/images/6-5-1.png)
 
 ## Задание 2
 
@@ -104,7 +104,7 @@ spec:
 
 Не работает
 
-![Проверка развертывания](/images/6-5-1-2.png)
+![Проверка развертывания](https://github.com/artemtsybakov/netologyedu/blob/d7d6adc3ca613d5924613ba8131f66e3ab91d551/HW6.5/images/6-5-1-2.png)
 
 Проверка пода
 
@@ -112,7 +112,7 @@ spec:
 
 Не запустился и выдает ошибку
 
-![Проверка пода](/images/6-5-1-3.png)
+![Проверка пода](https://github.com/artemtsybakov/netologyedu/blob/d7d6adc3ca613d5924613ba8131f66e3ab91d551/HW6.5/images/6-5-1-3.png)
 
 Просмотр журнала пода 
 
@@ -120,7 +120,7 @@ spec:
 
 В журнале ошибка
 
-![Проверка пода](/images/6-5-1-4.png)
+![Проверка пода](https://github.com/artemtsybakov/netologyedu/blob/d7d6adc3ca613d5924613ba8131f66e3ab91d551/HW6.5/images/6-5-1-4.png)
 
 Под не может запустится потому что не указана переменная с паролем. Что бы разрешить доступ без пароля нужно указать переменную ALLOW_EMPTY_PASSWORD=yes.
 
@@ -136,9 +136,9 @@ spec:
 
 Запуск развертывания. Провека. Все работает.
 
-![Результат развертывания](/images/6-5-1-5.png)
+![Результат развертывания](https://github.com/artemtsybakov/netologyedu/blob/d7d6adc3ca613d5924613ba8131f66e3ab91d551/HW6.5/images/6-5-1-5.png)
 
-![Результат перезапуска пода](/images/6-5-1-6.png)
+![Результат перезапуска пода](https://github.com/artemtsybakov/netologyedu/blob/d7d6adc3ca613d5924613ba8131f66e3ab91d551/HW6.5/images/6-5-1-6.png)
 
 
 ## Задание 3
@@ -154,20 +154,20 @@ spec:
 
 ```sudo kubectl exec redis-7bfccd74cd-j9nbj -- ps aux```
 
-![ps aux](/images/6-5-1-8.png)
+![ps aux](https://github.com/artemtsybakov/netologyedu/blob/d7d6adc3ca613d5924613ba8131f66e3ab91d551/HW6.5/images/6-5-1-8.png)
 
 ```sudo kubectl logs redis-7bfccd74cd-j9nbj```
 
-![log](/images/6-5-1-7.png)
+![log](https://github.com/artemtsybakov/netologyedu/blob/d7d6adc3ca613d5924613ba8131f66e3ab91d551/HW6.5/images/6-5-1-7.png)
 
 ```sudo kubectl delete pod redis-7bfccd74cd-j9nbj```
 
 Под был удален и создан с другим именем.
 
-![delete](/images/6-5-1-10.png)
+![delete](https://github.com/artemtsybakov/netologyedu/blob/d7d6adc3ca613d5924613ba8131f66e3ab91d551/HW6.5/images/6-5-1-10.png)
 
 ```sudo kubectl port-forward redis-7bfccd74cd-j9nbj 6379:6379```
 
-![port-forward](/images/6-5-1-9.png)
+![port-forward](https://github.com/artemtsybakov/netologyedu/blob/d7d6adc3ca613d5924613ba8131f66e3ab91d551/HW6.5/images/6-5-1-9.png)
 
 
