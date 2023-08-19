@@ -9,7 +9,9 @@
 
 ### Устанавливаем k3s 
 
-```curl -sfL https://get.k3s.io > install_k3s```
+```
+curl -sfL https://get.k3s.io > install_k3s
+```
 
 Команда загружает содержимое сценария в файл install_k3s
 
@@ -19,7 +21,8 @@
 
 Устанвливаем приложение командой
 
-```sh install_k3s
+```
+sh install_k3s
 ```
 
 Скриншот результата выполнения команды ``` kubectl get po -n kube-system```
@@ -88,20 +91,25 @@ spec:
 
 Убрал переменную с логином и паролем.
 
-```spec:
-      containers:
-      - name: master
-        image: bitnami/redis:6.0.13
-        ports:
-        - containerPort: 6379
+```
+spec:
+  containers:
+  - name: master
+  image: bitnami/redis:6.0.13
+  ports:
+  - containerPort: 6379
 ```
 Запускаем развертывание
 
-```sudo kubectl apply -f HW6.5/deployment-redis.yaml```
+```
+sudo kubectl apply -f HW6.5/deployment-redis.yaml
+```
 
 Проверка развертывания 
 
-```sudo kubectl get deployment```
+```
+sudo kubectl get deployment
+```
 
 Не работает
 
@@ -109,7 +117,9 @@ spec:
 
 Проверка пода
 
-```sudo kubectl get pod```
+```
+sudo kubectl get pod
+```
 
 Не запустился и выдает ошибку
 
@@ -117,7 +127,9 @@ spec:
 
 Просмотр журнала пода 
 
-```sudo kubectl logs redis-86bcc69464-q```
+```
+sudo kubectl logs redis-86bcc69464-q
+```
 
 В журнале ошибка
 
@@ -127,12 +139,15 @@ spec:
 
 Удаляем старую развертку и изменяем файл разветки. Добавляем переменную.
 
-```sudo kubectl delete deployment redis```
+```
+sudo kubectl delete deployment redis
+```
 
 
-```		env:
-         - name: ALLOW_EMPTY_PASSWORD
-           value: "yes"
+```
+env:
+  - name: ALLOW_EMPTY_PASSWORD
+   value: "yes"
 ```		   
 
 Запуск развертывания. Провека. Все работает.
@@ -153,21 +168,29 @@ spec:
 > - проброса порта локальной машины в контейнер для отладки.
 >2. В качестве решения пришлите получившиеся команды.
 
-```sudo kubectl exec redis-7bfccd74cd-j9nbj -- ps aux```
+```
+sudo kubectl exec redis-7bfccd74cd-j9nbj -- ps aux
+```
 
 ![ps aux](https://github.com/artemtsybakov/netologyedu/blob/d7d6adc3ca613d5924613ba8131f66e3ab91d551/HW6.5/images/6-5-1-8.png)
 
-```sudo kubectl logs redis-7bfccd74cd-j9nbj```
+```
+sudo kubectl logs redis-7bfccd74cd-j9nbj
+```
 
 ![log](https://github.com/artemtsybakov/netologyedu/blob/d7d6adc3ca613d5924613ba8131f66e3ab91d551/HW6.5/images/6-5-1-7.png)
 
-```sudo kubectl delete pod redis-7bfccd74cd-j9nbj```
+```
+sudo kubectl delete pod redis-7bfccd74cd-j9nbj
+```
 
-Под был удален и создан с другим именем.
+#### Под был удален и создан с другим именем.
 
 ![delete](https://github.com/artemtsybakov/netologyedu/blob/d7d6adc3ca613d5924613ba8131f66e3ab91d551/HW6.5/images/6-5-1-10.png)
 
-```sudo kubectl port-forward redis-7bfccd74cd-j9nbj 6379:6379```
+```
+sudo kubectl port-forward redis-7bfccd74cd-j9nbj 6379:6379
+```
 
 ![port-forward](https://github.com/artemtsybakov/netologyedu/blob/d7d6adc3ca613d5924613ba8131f66e3ab91d551/HW6.5/images/6-5-1-9.png)
 
