@@ -15,11 +15,12 @@
 
 Изучаем сценарий на предмет вредоносного кода.
 
-![Текст сценария в Vim](/https://github.com/artemtsybakov/netologyedu/blob/d7d6adc3ca613d5924613ba8131f66e3ab91d551/HW6.5/images/6-5-1-1.png)
+![Текст сценария в Vim](https://github.com/artemtsybakov/netologyedu/blob/d7d6adc3ca613d5924613ba8131f66e3ab91d551/HW6.5/images/6-5-1-1.png)
 
 Устанвливаем приложение командой
 
-```sh install_k3s```
+```sh install_k3s
+```
 
 Скриншот результата выполнения команды ``` kubectl get po -n kube-system```
 
