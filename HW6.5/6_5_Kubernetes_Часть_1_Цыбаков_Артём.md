@@ -159,6 +159,12 @@ spec:
 
 ![log](/images/6-5-1-7.png)
 
+```sudo kubectl delete pod redis-7bfccd74cd-j9nbj```
+
+Под был удален и создан с другим именем.
+
+![delete](/images/6-5-1-10.png)
+
 ```sudo kubectl port-forward redis-7bfccd74cd-j9nbj 6379:6379```
 
 ![port-forward](/images/6-5-1-9.png)
