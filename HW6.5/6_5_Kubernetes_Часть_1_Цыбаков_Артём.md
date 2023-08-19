@@ -82,7 +82,18 @@ spec:
 service-redis.yaml
 
 ```
-
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis
+  labels:
+    run: redis
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+  selector:
+    run: redis
 ```
 
 ## Задание 3
