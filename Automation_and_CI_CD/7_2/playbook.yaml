@@ -1,0 +1,73 @@
+---
+# HW Ansible Part 2 archive 
+- name: Downloading the archive, creating a folder for unpacking, unpacking the archive.
+  hosts: labtest
+  remote_user: student
+  tags: archive
+
+  tasks:
+  - name: Downloads file from HTTPS    
+    ansible.builtin.get_url:
+     url: https://downloads.apache.org/kafka/3.5.1/kafka_2.13-3.5.1.tgz
+     dest: /tmp/kafka_2.13-3.5.1.tgz
+    tags: download
+  
+  - name: Create a directory if it does not exist
+    ansible.builtin.file:
+     path: /tmp/kafka
+     state: directory
+    tags: create
+
+  - name: Unarchive a file that is already on the remote machine
+    ansible.builtin.unarchive:
+     src: /tmp/kafka_2.13-3.5.1.tgz
+     dest: /tmp/kafka
+     remote_src: yes
+    tags: unarchive
+
+# HW Ansible Part 2 apt install
+- name: Install, run, autorun package
+  hosts: labtest
+  remote_user: student
+  become: true
+  tags: apt
+
+  tasks:
+  - name: Install tuned
+    ansible.builtin.apt:
+     name: tuned
+     state: present
+    tags: install
+
+  - name: Start service tuned, if not started
+    ansible.builtin.service:
+     name: tuned
+     state: started
+    tags: service
+
+  - name: Enable service tuned, and not touch the state
+    ansible.builtin.service:
+     name: tuned
+     enabled: yes
+    tags: enable
+
+# HW Ansible Part 3 motd
+- name: Change system greeting motd at login to whatever you want.
+  hosts: labtest
+  remote_user: student
+  become: true
+  vars:
+   text_motd: "Hello. HW Ansible Part 3 motd"
+  tags: motd
+
+  tasks:
+  - name: Run a shell command to clear motd
+    shell: cat /dev/null > /etc/motd
+    tags: clear
+
+  - name: Insert text_motd. Inserting the line at the beginning of the file.
+    ansible.builtin.lineinfile:
+     path: /etc/motd
+     insertbefore: "BOF"
+     line: "{{ text_motd }}"
+    tags: insert
