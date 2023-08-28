@@ -1,0 +1,25 @@
+# HW Ansible Part 3 motd
+- name: Change system greeting motd at login to whatever you want.
+  hosts: labtest
+  remote_user: student
+  become: true
+  gather_facts: yes
+  tags: motd
+
+  tasks:
+  
+  - name: Create a file
+    file:
+     path: /etc/motd
+     state: touch
+
+  - name: Run a shell command to clear motd
+    shell: cat /dev/null > /etc/motd
+    tags: clear
+
+  - name: Insert text_motd. Inserting the line at the beginning of the file.
+    ansible.builtin.lineinfile:
+     path: /etc/motd
+     insertbefore: "BOF"
+     line: "Host IP address {{ ansible_facts ['default_ipv4']['address'] }}. Host name  {{ ansible_facts ['hostname'] }}. Good day {{ ansible_facts ['user_id'] }}"
+    tags: insert
