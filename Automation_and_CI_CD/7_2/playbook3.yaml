@@ -1,0 +1,29 @@
+---
+- name: Apache install
+  hosts: labtest
+  gather_facts: yes
+  remote_user: student
+  become: yes
+
+  tasks:
+  - name: Download Apache
+    ansible.builtin.apt:
+     name: apache2
+     state: present
+     update_cache: yes
+
+  - name: Add Index page.
+    ansible.builtin.template:
+     src: index.html.j2
+     dest: /var/www/html/index.html
+     owner: root
+     group: root
+     mode: 0755
+    tags: index
+
+  - name: Start service httpd, if not started
+    ansible.builtin.service:
+     name: apache2
+     state: restarted
+     enabled: true
+    tags: restarted

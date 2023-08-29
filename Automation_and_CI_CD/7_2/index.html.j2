@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>My Webpage</title>
+</head>
+<body>
+<h1> CPU </h1>
+{{ ansible_facts.processor[2] }} {{ ansible_facts.product_name }} 
+
+<h1>RAM</h1> 
+free {{ ansible_facts.memory_mb.real.free }}
+total {{ ansible_facts.memory_mb.real.total }}
+used {{ ansible_facts.memory_mb.real.used }}
+<h1>HDD</h1>
+{{ ansible_facts.mounts[1] }} 
+</body>
+</html>
