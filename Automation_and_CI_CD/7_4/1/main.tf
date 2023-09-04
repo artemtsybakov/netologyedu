@@ -21,6 +21,7 @@ provider "yandex" {
 
 resource "yandex_compute_instance" "vm-1" {
   name = "terraform1"
+  hostname = "terraformlab"
   platform_id = "standard-v2"
 
   resources {
