@@ -1,1 +1,9 @@
-git-course/
+netologyedu/Automation_and_CI_CD/7_4/1/.terraform/
+netologyedu/Automation_and_CI_CD/7_4/1/.terraform.lock.hcl
+netologyedu/Automation_and_CI_CD/7_4/1/.terraform.tfstate
+netologyedu/Automation_and_CI_CD/7_4/2/.terraform/
+netologyedu/Automation_and_CI_CD/7_4/2/.terraform.lock.hcl
+netologyedu/Automation_and_CI_CD/7_4/2/.terraform.tfstate
+netologyedu/Automation_and_CI_CD/7_4/3/.terraform/
+netologyedu/Automation_and_CI_CD/7_4/3/.terraform.lock.hcl
+netologyedu/Automation_and_CI_CD/7_4/3/.terraform.tfstate
