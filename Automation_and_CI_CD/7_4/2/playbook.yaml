@@ -1,0 +1,53 @@
+---
+#VM terraform1 web server
+- name: nginx install
+  hosts: web
+  gather_facts: yes
+  remote_user: student
+  become: yes
+
+  tasks:
+  - name: Download Nginx
+    ansible.builtin.apt:
+     name: nginx
+     state: present
+     update_cache: yes
+
+  - name: Start service nginx, if not started
+    ansible.builtin.service:
+     name: nginx
+     state: started
+     enabled: true
+
+#VM terraform2 database server
+- name: postgresql install
+  hosts: db
+  gather_facts: yes
+  remote_user: student
+  become: yes
+
+  tasks:
+  - name: Add an Apt signing key, uses whichever key is at the URL
+    ansible.builtin.apt_key:
+     url: https://www.postgresql.org/media/keys/ACCC4CF8.asc
+     state: present
+    tags: addk
+
+  - name: Add specified repository into sources list
+    ansible.builtin.apt_repository:
+     repo: deb https://apt.postgresql.org/pub/repos/apt jammy-pgdg main
+     state: present
+    tags: addr
+
+  - name: Download postgresql
+    ansible.builtin.apt:
+     name: postgresql
+     state: present
+     update_cache: yes
+    tags: install
+
+  - name: Start service postgresql, if not started
+    ansible.builtin.service:
+     name: postgresql
+     state: started
+     enabled: true

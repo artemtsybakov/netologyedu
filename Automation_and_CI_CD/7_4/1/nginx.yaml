@@ -1,0 +1,19 @@
+---
+- name: nginx install
+  hosts: labtest
+  gather_facts: yes
+  remote_user: student
+  become: yes
+
+  tasks:
+  - name: Download Nginx
+    ansible.builtin.apt:
+     name: nginx
+     state: present
+     update_cache: yes
+
+  - name: Start service nginx, if not started
+    ansible.builtin.service:
+     name: nginx
+     state: started
+     enabled: true
