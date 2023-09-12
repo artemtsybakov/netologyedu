@@ -1,0 +1,37 @@
+---
+- name: jenkins install
+  hosts: jenkins
+  gather_facts: yes
+  remote_user: student
+  become: yes
+
+  tasks:
+  - name: Add an Apt signing key, uses whichever key is at the URL
+    ansible.builtin.apt_key:
+     url: https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
+     state: present
+    tags: addk  
+
+  - name: Add specified repository into sources list
+    ansible.builtin.apt_repository:
+     repo: deb https://pkg.jenkins.io/debian-stable binary/
+     state: present
+    tags: addr
+
+  - name: install jdk
+    ansible.builtin.apt:
+     name: openjdk-17-jre
+     state: present
+     update_cache: yes
+
+  - name: install jenkins
+    ansible.builtin.apt:
+     name: jenkins
+     state: present
+     update_cache: yes
+
+  - name: Start service jenkins, if not started
+    ansible.builtin.service:
+     name: jenkins
+     state: started
+     enabled: true

@@ -1,0 +1,25 @@
+- name: Downloading the archive, creating a folder for unpacking, unpacking the archive.
+  hosts: jenkins
+  remote_user: student
+  become: yes
+  tags: archive
+
+  tasks:
+  - name: Downloads file from HTTPS    
+    ansible.builtin.get_url:
+     url: https://go.dev/dl/go1.21.1.linux-amd64.tar.gz
+     dest: /tmp/go1.21.1.linux-amd64.tar.gz
+    tags: download
+  
+  - name: Unarchive a file that is already on the remote machine
+    ansible.builtin.unarchive:
+     src: /tmp/go1.21.1.linux-amd64.tar.gz
+     dest: /usr/local
+     remote_src: yes
+    tags: unarchive
+
+  - name: Add a line to a EOF file
+    ansible.builtin.lineinfile:
+      path: /etc/profile
+      line: export PATH=$PATH:/usr/local/go/bin
+    tags: insert
