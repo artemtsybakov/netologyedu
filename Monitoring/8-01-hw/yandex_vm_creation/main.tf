@@ -20,7 +20,7 @@ provider "yandex" {
 }
 
 resource "yandex_compute_instance" "vm-1" {
-  name = "monitoring_hw"
+  name = "monitoringhw"
   hostname = "monitoring"
   platform_id = "standard-v3"
 
