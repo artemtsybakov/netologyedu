@@ -41,14 +41,178 @@
 
 <i>
 
-Router0(config)#interface gigabitEthernet 0/1\
-Router0(config-if)#standby 1 preempt\
-Router0(config-if)#standby 1 priority 95
+Вывод информации на Router0 по протоколу HSRP команда `sh standby`
 
-Router1(config)#interface gigabitEthernet 0/1\
-Router1(config-if)#standby 1 preempt\ 
-Router1(config-if)#standby 1 track gigabitEthernet 0/0
+```
+Router0#sh standby 
+GigabitEthernet0/0 - Group 0 (version 2)
+  State is Active
+    7 state changes, last state change 00:00:19
+  Virtual IP address is 192.168.0.1
+  Active virtual MAC address is 0000.0C9F.F000
+    Local virtual MAC address is 0000.0C9F.F000 (v2 default)
+  Hello time 3 sec, hold time 10 sec
+    Next hello sent in 2.204 secs
+  Preemption enabled
+  Active router is local
+  Standby router is 192.168.0.3
+  Priority 105 (configured 105)
+    Track interface GigabitEthernet0/1 state Up decrement 10
+  Group name is hsrp-Gig0/0-0 (default)
+GigabitEthernet0/1 - Group 1 (version 2)
+  State is Standby
+    9 state changes, last state change 00:00:38
+  Virtual IP address is 192.168.1.1
+  Active virtual MAC address is 0000.0C9F.F001
+    Local virtual MAC address is 0000.0C9F.F001 (v2 default)
+  Hello time 3 sec, hold time 10 sec
+    Next hello sent in 1.561 secs
+  Preemption disabled
+  Active router is 192.168.1.3
+  Standby router is local
+  Priority 50 (configured 50)
+  Group name is hsrp-Gig0/1-1 (default)
+Router0#
+```
+На Router0 нужно производим настройку. Для этого перейдем в настройки интерфейса. gigabitEthernet 0/1.
 
+`interface gigabitEthernet 0/1`
+
+Включить режим preempt
+
+`standby 1 preempt`
+
+Изменим приоритет маршрутизатора
+
+`standby 1 priority 95`
+
+и настроить отслеживание интерфейса gigabitEthernet 0/0 на случай разрыва связи
+
+`standby 1 track gigabitEthernet 0/0`
+
+Вывод информации по протоколу HSRP команда `sh standby` после настройки
+```
+GigabitEthernet0/0 - Group 0 (version 2)
+  State is Active
+    7 state changes, last state change 00:00:19
+  Virtual IP address is 192.168.0.1
+  Active virtual MAC address is 0000.0C9F.F000
+    Local virtual MAC address is 0000.0C9F.F000 (v2 default)
+  Hello time 3 sec, hold time 10 sec
+    Next hello sent in 1.339 secs
+  Preemption enabled
+  Active router is local
+  Standby router is 192.168.0.3
+  Priority 105 (configured 105)
+    Track interface GigabitEthernet0/1 state Up decrement 10
+  Group name is hsrp-Gig0/0-0 (default)
+GigabitEthernet0/1 - Group 1 (version 2)
+  State is Standby
+    9 state changes, last state change 00:00:38
+  Virtual IP address is 192.168.1.1
+  Active virtual MAC address is 0000.0C9F.F001
+    Local virtual MAC address is 0000.0C9F.F001 (v2 default)
+  Hello time 3 sec, hold time 10 sec
+    Next hello sent in 1.11 secs
+  Preemption enabled
+  Active router is 192.168.1.3
+  Standby router is local
+  Priority 95 (configured 95)
+    Track interface GigabitEthernet0/0 state Up decrement 10
+  Group name is hsrp-Gig0/1-1 (default) 
+```
+Вывод информации на Router1 по протоколу HSRP команда `sh standby`
+
+```
+Router1#sh standby 
+GigabitEthernet0/0 - Group 0 (version 2)
+  State is Standby
+    9 state changes, last state change 00:00:39
+  Virtual IP address is 192.168.0.1
+  Active virtual MAC address is 0000.0C9F.F000
+    Local virtual MAC address is 0000.0C9F.F000 (v2 default)
+  Hello time 3 sec, hold time 10 sec
+    Next hello sent in 1.671 secs
+  Preemption enabled
+  Active router is 192.168.0.2
+  Standby router is local
+  Priority 100 (default 100)
+    Track interface GigabitEthernet0/1 state Up decrement 10
+  Group name is hsrp-Gig0/0-0 (default)
+GigabitEthernet0/1 - Group 1 (version 2)
+  State is Active
+    7 state changes, last state change 00:00:27
+  Virtual IP address is 192.168.1.1
+  Active virtual MAC address is 0000.0C9F.F001
+    Local virtual MAC address is 0000.0C9F.F001 (v2 default)
+  Hello time 3 sec, hold time 10 sec
+    Next hello sent in 1.263 secs
+  Preemption enabled
+  Active router is local
+  Standby router is 192.168.1.2
+  Priority 100 (default 100)
+  Group name is hsrp-Gig0/1-1 (default)
+```
+На Router1 нужно производим настройку. Для этого перейдем в настройки интерфейса. gigabitEthernet 0/1.
+
+`interface gigabitEthernet 0/1`
+
+Настроить отслеживание интерфейса gigabitEthernet 0/0 на случай разрыва связи
+
+`standby 1 track gigabitEthernet 0/0`
+
+### Проверка 
+
+Отключаем кабель от Router0. 
+
+```
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0, changed state to down
+```
+
+Состояние на Router1 изменилось 
+
+```
+%HSRP-6-STATECHANGE: GigabitEthernet0/0 Grp 0 state Standby -> Active
+```
+
+Пинг проходит
+
+![Ping1]()
+
+Подключаем кабель назад к Router0.
+```
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0, changed state to up
+
+%HSRP-6-STATECHANGE: GigabitEthernet0/0 Grp 0 state Speak -> Standby
+
+%HSRP-6-STATECHANGE: GigabitEthernet0/0 Grp 0 state Standby -> Active
+
+%HSRP-6-STATECHANGE: GigabitEthernet0/1 Grp 1 state Speak -> Standby
+```
+Отключаем кабель от Router1.
+
+```
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0, changed state to down
+
+%HSRP-6-STATECHANGE: GigabitEthernet0/1 Grp 1 state Speak -> Standby
+```
+Пинг проходит
+
+![Ping2]()
+
+Покдлючаем кабель назад к Router1
+
+```
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0, changed state to up
+
+ %HSRP-6-STATECHANGE: GigabitEthernet0/1 Grp 1 state Standby -> Active
+
+%HSRP-6-STATECHANGE: GigabitEthernet0/0 Grp 0 state Speak -> Standby
+
+%HSRP-6-STATECHANGE: GigabitEthernet0/0 Grp 0 state Standby -> Active
+
+%HSRP-6-STATECHANGE: GigabitEthernet0/0 Grp 0 state Speak -> Standby
+```
 
 </i>
 
