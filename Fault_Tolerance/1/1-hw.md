@@ -177,7 +177,7 @@ GigabitEthernet0/1 - Group 1 (version 2)
 
 Пинг проходит
 
-![Ping1]()
+![Ping1](https://github.com/artemtsybakov/netologyedu/blob/master/Fault_Tolerance/1/img/Ping1.jpg)
 
 Подключаем кабель назад к Router0.
 ```
@@ -198,7 +198,7 @@ GigabitEthernet0/1 - Group 1 (version 2)
 ```
 Пинг проходит
 
-![Ping2]()
+![Ping2](https://github.com/artemtsybakov/netologyedu/blob/master/Fault_Tolerance/1/img/Ping2.jpg)
 
 Покдлючаем кабель назад к Router1
 
