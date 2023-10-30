@@ -232,8 +232,72 @@ GigabitEthernet0/1 - Group 1 (version 2)
 
 <i>
 
+`sudo mv /var/www/html/index.nginx-debian.html /media/sf_share/`
 
+![]()
 
+```
+student@Debian-keepalived-nginx-1:~$ sudo systemctl status keepalived.service 
+● keepalived.service - Keepalive Daemon (LVS and VRRP)
+     Loaded: loaded (/lib/systemd/system/keepalived.service; enabled; preset: enabled)
+     Active: active (running) since Mon 2023-10-30 16:22:42 MSK; 12min ago
+       Docs: man:keepalived(8)
+             man:keepalived.conf(5)
+             man:genhash(1)
+             https://keepalived.org
+   Main PID: 5313 (keepalived)
+      Tasks: 2 (limit: 2293)
+     Memory: 2.3M
+        CPU: 8.319s
+     CGroup: /system.slice/keepalived.service
+             ├─5313 /usr/sbin/keepalived --dont-fork
+             └─5314 /usr/sbin/keepalived --dont-fork
+
+Oct 30 16:28:39 Debian-keepalived-nginx-1 Keepalived_vrrp[5314]: Script `nginx_check` now returning 0
+Oct 30 16:28:39 Debian-keepalived-nginx-1 Keepalived_vrrp[5314]: VRRP_Script(nginx_check) succeeded
+Oct 30 16:28:39 Debian-keepalived-nginx-1 Keepalived_vrrp[5314]: (VI_1) Entering BACKUP STATE
+Oct 30 16:28:39 Debian-keepalived-nginx-1 Keepalived_vrrp[5314]: (VI_1) received lower priority (254) advert from 192>
+Oct 30 16:28:40 Debian-keepalived-nginx-1 Keepalived_vrrp[5314]: (VI_1) received lower priority (254) advert from 192>
+Oct 30 16:28:41 Debian-keepalived-nginx-1 Keepalived_vrrp[5314]: (VI_1) received lower priority (254) advert from 192>
+Oct 30 16:28:42 Debian-keepalived-nginx-1 Keepalived_vrrp[5314]: (VI_1) Entering MASTER STATE
+Oct 30 16:33:45 Debian-keepalived-nginx-1 Keepalived_vrrp[5314]: Script `file_check` now returning 1
+Oct 30 16:33:45 Debian-keepalived-nginx-1 Keepalived_vrrp[5314]: VRRP_Script(file_check) failed (exited with status 1)
+Oct 30 16:33:45 Debian-keepalived-nginx-1 Keepalived_vrrp[5314]: (VI_1) Entering FAULT STATE
+```
+
+`sudo mv /media/sf_share/index.nginx-debian.html /var/www/html/`
+
+```
+student@Debian-keepalived-nginx-1:~$ sudo systemctl status keepalived.service 
+● keepalived.service - Keepalive Daemon (LVS and VRRP)
+     Loaded: loaded (/lib/systemd/system/keepalived.service; enabled; preset: enabled)
+     Active: active (running) since Mon 2023-10-30 16:22:42 MSK; 14min ago
+       Docs: man:keepalived(8)
+             man:keepalived.conf(5)
+             man:genhash(1)
+             https://keepalived.org
+   Main PID: 5313 (keepalived)
+      Tasks: 2 (limit: 2293)
+     Memory: 2.3M
+        CPU: 9.822s
+     CGroup: /system.slice/keepalived.service
+             ├─5313 /usr/sbin/keepalived --dont-fork
+             └─5314 /usr/sbin/keepalived --dont-fork
+
+Oct 30 16:33:45 Debian-keepalived-nginx-1 Keepalived_vrrp[5314]: Script `file_check` now returning 1
+Oct 30 16:33:45 Debian-keepalived-nginx-1 Keepalived_vrrp[5314]: VRRP_Script(file_check) failed (exited with status 1)
+Oct 30 16:33:45 Debian-keepalived-nginx-1 Keepalived_vrrp[5314]: (VI_1) Entering FAULT STATE
+Oct 30 16:36:33 Debian-keepalived-nginx-1 Keepalived_vrrp[5314]: Script `file_check` now returning 0
+Oct 30 16:36:33 Debian-keepalived-nginx-1 Keepalived_vrrp[5314]: VRRP_Script(file_check) succeeded
+Oct 30 16:36:33 Debian-keepalived-nginx-1 Keepalived_vrrp[5314]: (VI_1) Entering BACKUP STATE
+Oct 30 16:36:33 Debian-keepalived-nginx-1 Keepalived_vrrp[5314]: (VI_1) received lower priority (254) advert from 192>
+Oct 30 16:36:34 Debian-keepalived-nginx-1 Keepalived_vrrp[5314]: (VI_1) received lower priority (254) advert from 192>
+Oct 30 16:36:35 Debian-keepalived-nginx-1 Keepalived_vrrp[5314]: (VI_1) received lower priority (254) advert from 192>
+Oct 30 16:36:36 Debian-keepalived-nginx-1 Keepalived_vrrp[5314]: (VI_1) Entering MASTER STATE
+
+```
+![]()
+sudo chmod -u=755 /var/www/html/index.nginx-debian.html
 </i>
 
 ---
