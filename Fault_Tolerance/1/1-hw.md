@@ -297,7 +297,9 @@ Oct 30 16:36:36 Debian-keepalived-nginx-1 Keepalived_vrrp[5314]: (VI_1) Entering
 
 ```
 ![]()
-sudo chmod -u=755 /var/www/html/index.nginx-debian.html
+После переноса файла с виртуальной машины и обратного копирования на виртуальную машину, изменились права на доступ к файлу. Восстановим права командой `sudo chmod -u=755 /var/www/html/index.nginx-debian.html`.
+
+После изменения прав все снова работает.
 </i>
 
 ---
