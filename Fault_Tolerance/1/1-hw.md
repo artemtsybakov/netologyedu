@@ -300,14 +300,18 @@ Oct 30 16:36:36 Debian-keepalived-nginx-1 Keepalived_vrrp[5314]: (VI_1) Entering
 ```
 ![access rights](https://github.com/artemtsybakov/netologyedu/blob/master/Fault_Tolerance/1/img/Prava_sletely.jpg)
 
-После переноса файла с виртуальной машины и обратного копирования на виртуальную машину, изменились права на доступ к файлу. Восстановим права командой `sudo chmod -u=755 /var/www/html/index.nginx-debian.html`.
+После переноса файла с виртуальной машины и обратного копирования на виртуальную машину, изменились права на доступ к файлу. Восстановим права командой 
+
+`sudo chmod -u=755 /var/www/html/index.nginx-debian.html`.
 
 После изменения прав все снова работает.
 
 ![ok_state](https://github.com/artemtsybakov/netologyedu/blob/master/Fault_Tolerance/1/img/ok_state.jpg)
 
 [Ссылка на конфигурационный файл keepalive ВМ1](https://github.com/artemtsybakov/netologyedu/blob/master/Fault_Tolerance/1/keepalived1.conf)
+
 [Ссылка на конфигурационный файл keepalive ВМ1](https://github.com/artemtsybakov/netologyedu/blob/master/Fault_Tolerance/1/keepalived2.conf)
+
 </i>
 
 ---
