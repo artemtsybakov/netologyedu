@@ -98,17 +98,17 @@
 
 <i>
 
-[Настройка /etc/haproxy/haproxy.cfg]()
+[Настройка /etc/haproxy/haproxy.cfg](https://github.com/artemtsybakov/netologyedu/blob/master/Fault_Tolerance/2/img/haproxy_task3.cfg)
 
-[Настройка /etc/nginx/nginx.conf]()
+[Настройка /etc/nginx/nginx.conf](https://github.com/artemtsybakov/netologyedu/blob/master/Fault_Tolerance/2/img/nginx.conf)
 
-[Настройка /etc/nginx/sites-available/default]()
+[Настройка /etc/nginx/sites-available/default](https://github.com/artemtsybakov/netologyedu/blob/master/Fault_Tolerance/2/img/default)
 
-![localhost2]()
+![localhost2](ttps://github.com/artemtsybakov/netologyedu/blob/master/Fault_Tolerance/2/img/localhost2.png)
 
-![localhost]()
+![localhost](https://github.com/artemtsybakov/netologyedu/blob/master/Fault_Tolerance/2/img/localhost.png)
 
-![redirection]()
+![redirection](https://github.com/artemtsybakov/netologyedu/blob/master/Fault_Tolerance/2/img/redirection.png)
 
 </i>
 
