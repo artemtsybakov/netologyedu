@@ -104,7 +104,7 @@
 
 [Настройка /etc/nginx/sites-available/default](https://github.com/artemtsybakov/netologyedu/blob/master/Fault_Tolerance/2/img/default)
 
-![localhost2](ttps://github.com/artemtsybakov/netologyedu/blob/master/Fault_Tolerance/2/img/localhost2.png)
+![localhost2](https://github.com/artemtsybakov/netologyedu/blob/master/Fault_Tolerance/2/img/localhost2.png)
 
 ![localhost](https://github.com/artemtsybakov/netologyedu/blob/master/Fault_Tolerance/2/img/localhost.png)
 
