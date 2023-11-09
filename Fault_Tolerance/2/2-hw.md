@@ -38,6 +38,21 @@
 
 <i>
 
+Первый сервер
+
+![simple_python1](https://github.com/artemtsybakov/netologyedu/blob/master/Fault_Tolerance/2/img/simple_python_1.png)
+
+Второй сервер
+
+![simple_python2](https://github.com/artemtsybakov/netologyedu/blob/master/Fault_Tolerance/2/img/simple_python_2.png)
+
+[Конфигурация для первого задания(tcp)](https://github.com/artemtsybakov/netologyedu/blob/master/Fault_Tolerance/2/img/task1_tcp_haproxy.cfg)
+
+Результат выполнения
+
+![haproxy_tcp](https://github.com/artemtsybakov/netologyedu/blob/master/Fault_Tolerance/2/img/haproxy_tcp.png)
+
+![Stats](https://github.com/artemtsybakov/netologyedu/blob/master/Fault_Tolerance/2/img/stats_haproxy_tcp.png)
 
 </i>
 
@@ -57,7 +72,15 @@
 
 <i>
 
+Третий сервер
 
+![simple_python3](https://github.com/artemtsybakov/netologyedu/blob/master/Fault_Tolerance/2/img/simple_python_3.png)
+
+[Конфигурация для второго задания(http)](https://github.com/artemtsybakov/netologyedu/blob/master/Fault_Tolerance/2/img/task2_http_haproxy.cfg)
+
+Результат выполнения
+
+![haproxy_http_example_local](https://github.com/artemtsybakov/netologyedu/blob/master/Fault_Tolerance/2/img/haproxy_http_example_local.png)
 
 </i>
 
@@ -75,7 +98,17 @@
 
 <i>
 
+[Настройка /etc/haproxy/haproxy.cfg]()
 
+[Настройка /etc/nginx/nginx.conf]()
+
+[Настройка /etc/nginx/sites-available/default]()
+
+![localhost2]()
+
+![localhost]()
+
+![redirection]()
 
 </i>
 
