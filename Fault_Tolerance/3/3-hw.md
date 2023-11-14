@@ -53,6 +53,7 @@
 
 ` rsync -a --checksum --exclude '.*' . /tmp/backup `
 
+![exercise1](https://github.com/artemtsybakov/netologyedu/blob/master/Fault_Tolerance/3/img/exercise1.jpg)
 </i>
 
 ---
@@ -70,11 +71,14 @@
 </details>
 
 <i>
+Текст сценария.
 
 ```
 #! /bin/bash
 rsync -a --checksum --exclude '.*' ~  /tmp/backup
 ```
+
+Текст планировщика crone. Резервная копия создается раз в день в 21:20.
 
 ```
 # Edit this file to introduce tasks to be run by cron.
@@ -102,6 +106,9 @@ rsync -a --checksum --exclude '.*' ~  /tmp/backup
 # m h  dom mon dow   command
 20 21 * * * /home/student/rsync.sh
 ```
+Скриншот последней записи в логе (`sudo tail -n 1 /var/log/syslog`), результат выполнения (`ls -al /tmp/backup/student`), текст сценария (`cat ./rsync.sh`).
+
+![exercise2](https://github.com/artemtsybakov/netologyedu/blob/master/Fault_Tolerance/3/img/exercise2.jpg)
 
 </i>
 
@@ -119,8 +126,11 @@ rsync -a --checksum --exclude '.*' ~  /tmp/backup
 
 <i>
 
-rsync -a --progress --bwlimit=1000 DSC_0445_00001.jpg student@192.168.1.10:/tmp
+`rsync -a --progress --bwlimit=1000 DSC_0445_00001.jpg student@192.168.1.10:/tmp`
 
+Ограничение добавляется опицией `--bwlimit`. Результат выполнения команды.
+
+![exercise3](https://github.com/artemtsybakov/netologyedu/blob/master/Fault_Tolerance/3/img/exercise3.jpg)
 
 </i>
 
