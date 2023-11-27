@@ -38,7 +38,7 @@
 
 `sudo systemctl status memcached`
 
-![]()
+![staus](https://github.com/artemtsybakov/netologyedu/blob/master/Data%20storage%20and%20transmission%20systems/02/img/memcached_status.jpg)
 
 ---
 
@@ -96,6 +96,6 @@ get name2
 set key5 5 
 incrby key5 5
 ```
-![]()
+![incrby](https://github.com/artemtsybakov/netologyedu/blob/master/Data%20storage%20and%20transmission%20systems/02/img/redis_incrby.jpg)
 
 *Приведите скриншот, где будут проделаны все операции и будет видно, что значение key5 стало равно 10.*
