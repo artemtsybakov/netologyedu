@@ -62,6 +62,22 @@ END
 
 *Через redis-cli достаньте все записанные ключи и значения из базы, приведите скриншот этой операции.*
 
+127.0.0.1:6379> set name Boris
+OK
+127.0.0.1:6379> set name1 Artem
+OK
+127.0.0.1:6379> set name2 Sergey
+OK
+127.0.0.1:6379> keys *
+1) "name2"
+2) "name1"
+3) "name"
+127.0.0.1:6379> get name
+"Boris"
+127.0.0.1:6379> get name1
+"Artem"
+127.0.0.1:6379> get name2
+"Sergey"
 
 
 ---
