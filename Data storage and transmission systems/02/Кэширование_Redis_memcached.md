@@ -23,6 +23,8 @@
 
 *Приведите ответ в свободной форме.*
 
+```Пользователи поисковой системы часто запрашивают одни и те же данные. Что бы каждый раз не выгружать эти данные из базы, они помещаются в кэш. Как правило в область быстрой памяти. Следующий раз, когда кто-то снова запросит эти данные, они будт пререданы пользователю из кэша. Кэширование может увеличить скорость досупа к часто используемым данным.```
+
 ---
 
 ### Задание 2. Memcached
@@ -32,9 +34,11 @@
 
 *Приведите скриншот systemctl status memcached, где будет видно, что memcached запущен.*
 
-sudo apt install memcached
+`sudo apt install memcached`
 
-sudo systemctl status memcached
+`sudo systemctl status memcached`
+
+![]()
 
 ---
 
@@ -44,8 +48,8 @@ sudo systemctl status memcached
 
 *Приведите скриншот, на котором видно, что спустя 5 секунд ключи удалились из базы.*
 
+```
 telnet localhost 11211
-
 set name 0 5 3
 abc
 STORED
@@ -53,6 +57,9 @@ get name
 VALUE name 0 3
 abc
 END
+```
+
+![values](https://github.com/artemtsybakov/netologyedu/blob/master/Data%20storage%20and%20transmission%20systems/02/img/memcached.jpg)
 
 ---
 
@@ -62,23 +69,19 @@ END
 
 *Через redis-cli достаньте все записанные ключи и значения из базы, приведите скриншот этой операции.*
 
-127.0.0.1:6379> set name Boris
-OK
-127.0.0.1:6379> set name1 Artem
-OK
-127.0.0.1:6379> set name2 Sergey
-OK
-127.0.0.1:6379> keys *
-1) "name2"
-2) "name1"
-3) "name"
-127.0.0.1:6379> get name
-"Boris"
-127.0.0.1:6379> get name1
-"Artem"
-127.0.0.1:6379> get name2
-"Sergey"
+![redis_indstalled](https://github.com/artemtsybakov/netologyedu/blob/master/Data%20storage%20and%20transmission%20systems/02/img/redis.jpg)
 
+```
+set name Boris
+set name1 Artem
+set name2 Sergey
+keys *
+get name
+get name1
+get name2
+```
+
+![values_redis](https://github.com/artemtsybakov/netologyedu/blob/master/Data%20storage%20and%20transmission%20systems/02/img/redis_add_value.jpg)
 
 ---
 
@@ -88,5 +91,11 @@ OK
 ### Задание 5*. Работа с числами 
 
 Запишите в Redis ключ key5 со значением типа "int" равным числу 5. Увеличьте его на 5, чтобы в итоге в значении лежало число 10.  
+
+```
+set key5 5 
+incrby key5 5
+```
+![]()
 
 *Приведите скриншот, где будут проделаны все операции и будет видно, что значение key5 стало равно 10.*
