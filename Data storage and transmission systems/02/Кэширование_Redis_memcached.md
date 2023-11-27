@@ -46,9 +46,13 @@ sudo systemctl status memcached
 
 telnet localhost 11211
 
-add key 0 20 5
-
-get key
+set name 0 5 3
+abc
+STORED
+get name
+VALUE name 0 3
+abc
+END
 
 ---
 
