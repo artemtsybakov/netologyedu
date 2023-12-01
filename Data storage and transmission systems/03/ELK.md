@@ -1,4 +1,4 @@
-# Домашнее задание к занятию «'ELK'» - 'Цыбаков Артём'
+# Домашнее задание к занятию «`ELK`» - `Цыбаков Артём`
 
 ### Задание 1. Elasticsearch 
 
@@ -6,9 +6,14 @@
 
 *Приведите скриншот команды 'curl -X GET 'localhost:9200/_cluster/health?pretty', сделанной на сервере с установленным Elasticsearch. Где будет виден нестандартный cluster_name*.
 
-sudo docker network create somenetwork
+Установил docker. Загрузил образ elasticsearch с сайта Docker Hub. Запустил образ командой.
+`sudo docker run --name elasticsearch --net somenetwork -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" -e "cluster.name=Tsybakov Artem" -e "xpack.security.enabled=false" elasticsearch:8.11.1`
+В команде передал 3 переменные среды.
+1. discovery.type=single-node
+2. cluster.name=Tsybakov Artem имя кластера которое требуется для задания. Так же эту переменную можно указать в файле elasticsearch.yml. 
+3. xpack.security.enabled=false
 
-sudo docker run --name elasticsearch --net somenetwork -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" -e "cluster.name=Tsybakov Artem" -e "xpack.security.enabled=false" elasticsearch:8.11.1
+![]()
 
 ---
 
@@ -18,6 +23,10 @@ sudo docker run --name elasticsearch --net somenetwork -p 9200:9200 -p 9300:9300
 
 *Приведите скриншот интерфейса Kibana на странице http://<ip вашего сервера>:5601/app/dev_tools#/console, где будет выполнен запрос GET /_cluster/health?pretty*.
 
+Загрузил образ kibana с сайта Docker Hub. Запустил образ командой.
+`sudo docker run --name kibana --net somenetwork -p 5601:5601 kibana:8.11.1`
+
+![]()
 ---
 
 ### Задание 3. Logstash
@@ -26,6 +35,10 @@ sudo docker run --name elasticsearch --net somenetwork -p 9200:9200 -p 9300:9300
 
 *Приведите скриншот интерфейса Kibana, на котором видны логи Nginx.*
 
+
+sudo docker run --rm -it -v ~/pipeline/:/usr/share/logstash/pipeline/ logstash:8.11.1
+
+![]()
 ---
 
 ### Задание 4. Filebeat. 
@@ -44,3 +57,4 @@ sudo docker run --name elasticsearch --net somenetwork -p 9200:9200 -p 9300:9300
 Для этого лог должен писаться на файловую систему, Logstash должен корректно его распарсить и разложить на поля. 
 
 *Приведите скриншот интерфейса Kibana, на котором будет виден этот лог и напишите лог какого приложения отправляется.*
+![]()
