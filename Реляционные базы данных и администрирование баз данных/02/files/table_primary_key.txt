@@ -1,0 +1,16 @@
+Название таблицы | Название первичного ключа
+customer         | customer_id
+rental           | rental_id
+language         | language_id
+film_categorey   | film_id, category_id
+category         | category_id
+inventory        | inventory_id
+film             | film_id
+store            | store_id
+staff            | staff_id
+payment          | payment_id
+city             | city_id
+address          | address_id
+film_actor       | actor_id, film_id
+country          | country_id
+actor            | actor_id
