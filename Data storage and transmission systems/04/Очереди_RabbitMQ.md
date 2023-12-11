@@ -13,7 +13,7 @@
 Добавил права администратора пользователю
 `sudo rabbitmqctl set_user_tags artem administrator`
 
-![]()
+![RabbitMQ_Web](https://github.com/artemtsybakov/netologyedu/blob/master/Data%20storage%20and%20transmission%20systems/04/img/RabbitMQ_Web.jpg)
 
 ---
 
@@ -38,17 +38,15 @@ $ pip install pika
 
 Запустил скрипт два раза командой `python3 ./producer.py`. В очереди появилось 2 сообщения.
 
-![]()
+![producer_script](https://github.com/artemtsybakov/netologyedu/blob/master/Data%20storage%20and%20transmission%20systems/04/img/producer_script.png)
 
 Запустил скрипт два раза командой `python3 ./consumer.py`. Оба сообщения ушли из очереди
 
-![]()
+![consumer_script](https://github.com/artemtsybakov/netologyedu/blob/master/Data%20storage%20and%20transmission%20systems/04/img/consumer_script.jpg)
 
 Результат в командной строке.
 
-![]()
-
-
+![result](https://github.com/artemtsybakov/netologyedu/blob/master/Data%20storage%20and%20transmission%20systems/04/img/result.jpg)
 
 ---
 
@@ -69,9 +67,7 @@ $ cat /etc/hosts
 
 *В качестве решения домашнего задания приложите скриншоты из веб-интерфейса с информацией о доступных нодах в кластере и включённой политикой.*
 
-
-
-![]()
+![cluster_web](https://github.com/artemtsybakov/netologyedu/blob/master/Data%20storage%20and%20transmission%20systems/04/img/cluster_web.jpg)
 
 Также приложите вывод команды с двух нод:
 
@@ -79,10 +75,10 @@ $ cat /etc/hosts
 $ rabbitmqctl cluster_status
 ```
 rmq01
-![]()
+![cluster_rmq1](https://github.com/artemtsybakov/netologyedu/blob/master/Data%20storage%20and%20transmission%20systems/04/img/cluster_rmq1.jpg)
 
 rmq02
-![]()
+![cluster_rmq2](https://github.com/artemtsybakov/netologyedu/blob/master/Data%20storage%20and%20transmission%20systems/04/img/cluster_rmq2.jpg)
 
 Для закрепления материала снова запустите скрипт producer.py и приложите скриншот выполнения команды на каждой из нод:
 
@@ -91,21 +87,22 @@ $ rabbitmqadmin get queue='hello'
 ```
 
 rmq01
-![]()
+![rabbitmqadmin_rmq1](https://github.com/artemtsybakov/netologyedu/blob/master/Data%20storage%20and%20transmission%20systems/04/img/rabbitmqadmin_rmq1.jpg)
 
 rmq02
-![]()
+![rabbitmqadmin_rmq2](https://github.com/artemtsybakov/netologyedu/blob/master/Data%20storage%20and%20transmission%20systems/04/img/rabbitmqadmin_rmq2.jpg)
 
 После чего попробуйте отключить одну из нод, желательно ту, к которой подключались из скрипта, затем поправьте параметры подключения в скрипте consumer.py на вторую ноду и запустите его.
 
 *Приложите скриншот результата работы второго скрипта.*
 
-Через скрипт producer.py на rmq01 добавил 8 сообщений в очередь. Выключил rmq01. Сообщения остались в очереди. После запуска consumer.py на rmq02, все сообщения были получены.
+Через скрипт producer.py на rmq01 добавил 8 сообщений в очередь. Выключил rmq01. Сообщения остались в очереди. 
 
-![]()
+![rmq1_off_8msg_in_queue](https://github.com/artemtsybakov/netologyedu/blob/master/Data%20storage%20and%20transmission%20systems/04/img/rmq1_off_8msg_in_queue.jpg)
 
-![]()
+После запуска consumer.py на rmq02, все сообщения были получены.
 
+![rmq1_off_rmq2_get_8msg](https://github.com/artemtsybakov/netologyedu/blob/master/Data%20storage%20and%20transmission%20systems/04/img/rmq1_off_rmq2_get_8msg.jpg)
 
 ## Дополнительные задания (со звёздочкой*)
 Эти задания дополнительные, то есть не обязательные к выполнению, и никак не повлияют на получение вами зачёта по этому домашнему заданию. Вы можете их выполнить, если хотите глубже шире разобраться в материале.
