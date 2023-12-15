@@ -43,10 +43,11 @@ SELECT count(f.film_id)
 Получите информацию, за какой месяц была получена наибольшая сумма платежей, и добавьте информацию по количеству аренд за этот месяц.
 
 ```
-  SELECT month(p.payment_date), count(r.rental_id)
+  SELECT DATE_FORMAT(p.payment_date, '%d.%m.%y') AS "Дата аренды", 
+         count(r.rental_id) AS "Количество аренд"
     FROM payment p 
     JOIN rental r ON r.rental_id = p.rental_id 
-GROUP BY month(p.payment_date)
+GROUP BY DATE_FORMAT(p.payment_date, '%d.%m.%y')
 ORDER BY sum(p.amount) DESC LIMIT 1;
 ```
 ## Дополнительные задания (со звёздочкой*)
