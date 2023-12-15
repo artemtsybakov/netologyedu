@@ -70,6 +70,7 @@ GROUP BY s.staff_id;
 ### Задание 5*
 
 ```
+  SELECT f.title AS "Название фильма",
          f.rating AS "Рейтинг",
          c2.name AS "Жанр",
          f.release_year AS "Год выпуска",
@@ -83,9 +84,9 @@ GROUP BY s.staff_id;
          LEFT JOIN payment p ON p.rental_id = r.rental_id
          INNER JOIN film_category fc ON fc.film_id = f.film_id 
          INNER JOIN category c2 ON c2.category_id = fc.category_id 
-         INNER JOIN language l ON l.language_id = f.language_id 
+         INNER JOIN "language" l ON l.language_id = f.language_id 
 GROUP BY f.film_id, c2.category_id, l.language_id
 HAVING count(r.rental_id) = 0 
-ORDER BY f.title;
+ORDER BY f.title
 ```
 Найдите фильмы, которые ни разу не брали в аренду.
