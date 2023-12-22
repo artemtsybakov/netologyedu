@@ -54,7 +54,7 @@ select distinct concat(c.last_name, ' ', c.first_name),
  where payment_date >= ‘2005-07-30’ and payment_date < DATE_ADD(‘2005-07-30’, INTERVAL 1 DAY);
 ``` 
 explain analyze запроса
-
+```sql
 -> Limit: 1000 row(s)  (cost=0..0 rows=0) (actual time=44.3..44.6 rows=599 loops=1)
     -> Table scan on <temporary>  (cost=2.5..2.5 rows=0) (actual time=44.3..44.5 rows=599 loops=1)
         -> Temporary table with deduplication  (cost=0..0 rows=0) (actual time=44.3..44.3 rows=599 loops=1)
@@ -71,23 +71,22 @@ explain analyze запроса
                                     -> Single-row index lookup on c using PRIMARY (customer_id=r.customer_id)  (cost=0.25 rows=1) (actual time=0.00237..0.00243 rows=1 loops=634)
                                 -> Single-row index lookup on i using PRIMARY (inventory_id=r.inventory_id)  (cost=0.25 rows=1) (actual time=0.00287..0.00293 rows=1 loops=634)
                             -> Single-row index lookup on f using PRIMARY (film_id=i.film_id)  (cost=0.25 rows=1) (actual time=0.00337..0.00344 rows=1 loops=634)
-
+```
 Таблица фильтруется перебором ('Table scan on p').
-
 Проверяю индексы в таблицы payment
 ```sql
 select *
   from information_schema.statistics
  where table_name='payment';
 ```
-![]()
+![index_paymen](https://github.com/artemtsybakov/netologyedu/blob/master/%D0%A0%D0%B5%D0%BB%D1%8F%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D1%8B%D0%B5%20%D0%B1%D0%B0%D0%B7%D1%8B%20%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85%20%D0%B8%20%D0%B0%D0%B4%D0%BC%D0%B8%D0%BD%D0%B8%D1%81%D1%82%D1%80%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B1%D0%B0%D0%B7%20%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85/05/img/index_paymen.jpg)
 Добавляю иднекс даты в таблицу payment
 ```sql
 create index payment_date on payment(payment_date);
 ```
-![]()
-Проверяю explain analyze запроса 
 
+Проверяю. explain analyze запроса с добавленным индексом 
+```sql
 -> Limit: 1000 row(s)  (cost=0..0 rows=0) (actual time=23.5..23.9 rows=599 loops=1)
     -> Table scan on <temporary>  (cost=2.5..2.5 rows=0) (actual time=23.5..23.8 rows=599 loops=1)
         -> Temporary table with deduplication  (cost=0..0 rows=0) (actual time=23.5..23.5 rows=599 loops=1)
@@ -104,16 +103,17 @@ create index payment_date on payment(payment_date);
                                     -> Single-row index lookup on c using PRIMARY (customer_id=r.customer_id)  (cost=0.25 rows=1) (actual time=0.00391..0.00397 rows=1 loops=634)
                                 -> Single-row index lookup on i using PRIMARY (inventory_id=r.inventory_id)  (cost=0.25 rows=1) (actual time=0.00302..0.00309 rows=1 loops=634)
                             -> Single-row index lookup on f using PRIMARY (film_id=i.film_id)  (cost=0.25 rows=1) (actual time=0.0037..0.00377 rows=1 loops=634)
-
+```
 Время выполнения сократилось с actual time=44.3..44.6 до actual time=23.5..23.9 . Для фильтрации используется созданный индекс ('Index range scan on p'). 
 
 Вурнул назад группировку по фильму. 
 
 Группировку убирал потому что исходный запрос возвращал ФИО и сумму потраченную клинетом на фильмы. Если оставить группировку по фильму в измененном запросе, то он показывает несколько фильмов и результат от исходного отличается.
 Результат после исправления
-![]()
-Результат до исправления
-![]()
+![result_after](https://github.com/artemtsybakov/netologyedu/blob/master/%D0%A0%D0%B5%D0%BB%D1%8F%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D1%8B%D0%B5%20%D0%B1%D0%B0%D0%B7%D1%8B%20%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85%20%D0%B8%20%D0%B0%D0%B4%D0%BC%D0%B8%D0%BD%D0%B8%D1%81%D1%82%D1%80%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B1%D0%B0%D0%B7%20%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85/05/img/result_after.jpg)
+Результат (исходный запрос) до исправления
+![result_before](https://github.com/artemtsybakov/netologyedu/blob/master/%D0%A0%D0%B5%D0%BB%D1%8F%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D1%8B%D0%B5%20%D0%B1%D0%B0%D0%B7%D1%8B%20%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85%20%D0%B8%20%D0%B0%D0%B4%D0%BC%D0%B8%D0%BD%D0%B8%D1%81%D1%82%D1%80%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B1%D0%B0%D0%B7%20%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85/05/img/result_before.jpg)
+
 ## Дополнительные задания (со звёздочкой*)
 Эти задания дополнительные, то есть не обязательные к выполнению, и никак не повлияют на получение вами зачёта по этому домашнему заданию. Вы можете их выполнить, если хотите глубже шире разобраться в материале.
 
