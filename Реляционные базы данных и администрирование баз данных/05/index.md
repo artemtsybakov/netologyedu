@@ -80,6 +80,7 @@ select *
  where table_name='payment';
 ```
 ![index_paymen](https://github.com/artemtsybakov/netologyedu/blob/master/%D0%A0%D0%B5%D0%BB%D1%8F%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D1%8B%D0%B5%20%D0%B1%D0%B0%D0%B7%D1%8B%20%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85%20%D0%B8%20%D0%B0%D0%B4%D0%BC%D0%B8%D0%BD%D0%B8%D1%81%D1%82%D1%80%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B1%D0%B0%D0%B7%20%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85/05/img/index_paymen.jpg)
+
 Добавляю иднекс даты в таблицу payment
 ```sql
 create index payment_date on payment(payment_date);
@@ -109,9 +110,13 @@ create index payment_date on payment(payment_date);
 Вурнул назад группировку по фильму. 
 
 Группировку убирал потому что исходный запрос возвращал ФИО и сумму потраченную клинетом на фильмы. Если оставить группировку по фильму в измененном запросе, то он показывает несколько фильмов и результат от исходного отличается.
+
 Результат после исправления
+
 ![result_after](https://github.com/artemtsybakov/netologyedu/blob/master/%D0%A0%D0%B5%D0%BB%D1%8F%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D1%8B%D0%B5%20%D0%B1%D0%B0%D0%B7%D1%8B%20%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85%20%D0%B8%20%D0%B0%D0%B4%D0%BC%D0%B8%D0%BD%D0%B8%D1%81%D1%82%D1%80%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B1%D0%B0%D0%B7%20%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85/05/img/result_after.jpg)
+
 Результат (исходный запрос) до исправления
+
 ![result_before](https://github.com/artemtsybakov/netologyedu/blob/master/%D0%A0%D0%B5%D0%BB%D1%8F%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D1%8B%D0%B5%20%D0%B1%D0%B0%D0%B7%D1%8B%20%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85%20%D0%B8%20%D0%B0%D0%B4%D0%BC%D0%B8%D0%BD%D0%B8%D1%81%D1%82%D1%80%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B1%D0%B0%D0%B7%20%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85/05/img/result_before.jpg)
 
 ## Дополнительные задания (со звёздочкой*)
